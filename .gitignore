@@ -1,0 +1,12 @@
+# Ignore Android Studio (IDEA) files
+.idea/
+
+# Ignore build system workspace
+.gradle/
+local.properties
+
+# ignore files generated during build
+SifterClient/build/*
+
+# Ignore library jars in the module, since these are really managed by Android Studio
+SifterClient/libs/*

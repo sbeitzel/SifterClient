@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">SifterClient</string>
+    <string name="no_projects">No Sifter projects.</string>
+    <string name="projects">Projects</string>
+    <!-- Context Menu Options -->
+    <string name="menu_header">Select Details</string>
+    <string name="milestones">Milestones</string>
+    <string name="categories">Categories</string>
+    <string name="people">People</string>
+    <string name="issues">Issues</string>
+    <!-- Login Keys -->
+    <string name="menu_login">Enter Key</string>
+    <string name="menu_delete">Delete Key</string>
+    <string name="image_sifter">SifterClient</string>
+    <string name="domain">Domain Name:</string>
+    <string name="access_key">Access Key:</string>
+    <string name="domain_hint">your-company</string>
+    <string name="access_key_hint">32-digit-hexadecimal</string>
+    <string name="save_key">Save</string>
+    <string name="login_error">Login Status:</string>
+    <string name="token_accepted">Token accepted</string>
+    <string name="token_accepted_msg">Login keys saved.</string>
+    <string name="token_missing">Token missing</string>
+    <string name="token_missing_msg">Please enter domain name and access key.</string>
+    <string name="connection_error">Invalid URL</string>
+    <string name="connection_error_msg">Please enter a valid URL.</string>
+    <!-- Project Detail -->
+    <string name="project_name">Project Name:</string>
+    <string name="company">Company:</string>
+    <string name="project_archived">Archived:</string>
+    <string name="project_url">Project Link:</string>
+    <string name="issues_url">Issues Link:</string>
+    <string name="milestones_url">Milestones Link:</string>
+    <!-- Milestone Detail -->
+    <string name="milestone_name">Milestone Name:</string>
+    <string name="milestone_due_date">Due Date:</string>
+    <string name="milestone_issues_url">Issues Link:</string>
+    <!-- Category Detail -->
+    <string name="category_name">Category Name:</string>
+    <string name="category_issues_url">Issues Link:</string>
+    <!-- People Detail -->
+    <string name="username">User-name:</string>
+    <string name="first_name">First name:</string>
+    <string name="last_name">Last name:</string>
+    <string name="email">email:</string>
+    <string name="people_issues_url">Issues Link:</string>
+    <!-- Issues Detail -->
+    <string name="no_issues">No Sifter issues.</string>
+    <string name="page">Page:</string>
+    <string name="goto_page">go</string>
+    <string name="previous_page">prev</string>
+    <string name="next_page">next</string>
+    <string name="first_page_toast">This is the first page.</string>
+    <string name="last_page_toast">This is the last page.</string>
+    <!-- Issues Menu & Dialog -->
+    <string name="issues_menu_settings">Settings</string>
+    <string name="issues_menu_query">Query</string>
+    <string name="issues_menu_exit">Projects</string>
+    <string name="perpage_text">Issues per page</string>
+    <!-- Issues Filters -->
+    <string name="statuses">Statuses</string>
+    <string name="priorities">Priorities</string>
+    <!-- Issues search -->
+    <string name="issues_search_hint">Search issues</string>
+    <!-- Issue Detail -->
+    <string name="issue_number">Issue Number:</string>
+    <string name="issue_priority">Priority:</string>
+    <string name="issue_subject">Subject:</string>
+    <string name="issue_description">Description:</string>
+    <string name="issue_opener_name">Opener Name:</string>
+    <string name="issue_assignee_name">Assignee Name:</string>
+    <string name="issue_status">Status:</string>
+    <string name="issue_comment_count">Comment Count:</string>
+    <string name="issue_created_at">Created At:</string>
+    <string name="issue_updated_at">Updated At:</string>
+    <string name="issue_comments_url">Comments Link:</string>
+    <!-- Oops Message -->
+    <string name="oops_msg">Oops, something unexpected happened.\nHere is the stack trace.</string>
+    <string name="oops_error_msg">Sorry, but the stack trace was null.</string>
+</resources>
