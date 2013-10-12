@@ -131,6 +131,11 @@ public class SifterReader extends ListActivity {
 				e.printStackTrace();
 				mSifterHelper.onException(e.toString());
 			}
+            JSONObject statuses = getSifterFilters(IssuesActivity.STATUSES);
+            JSONObject priorities = getSifterFilters(IssuesActivity.PRIORITIES);
+            if (statuses != null && priorities != null) {
+                mSifterHelper.saveSifterFilters(statuses, priorities);
+            }
 			return sifterJSONObject;
 		}
 		@Override
@@ -149,11 +154,6 @@ public class SifterReader extends ListActivity {
 				mSifterHelper.onException(e.toString());
 				return;
 			}
-			JSONObject statuses = getSifterFilters(IssuesActivity.STATUSES);
-			JSONObject priorities = getSifterFilters(IssuesActivity.PRIORITIES);
-			if (statuses == null || priorities == null)
-				return;
-			mSifterHelper.saveSifterFilters(statuses, priorities);
 			fillData();
 		}
 	}
@@ -257,9 +257,10 @@ public class SifterReader extends ListActivity {
 	@Override
     public boolean onContextItemSelected(MenuItem item) {
     	AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+        assert info != null;
         switch(item.getItemId()) {
             case MILESTONES_ID:
-            	getProjDetail(info.id, MILESTONES_URL, MILESTONES, MilestonesActivity.class);
+                getProjDetail(info.id, MILESTONES_URL, MILESTONES, MilestonesActivity.class);
                 return true;
             case CATEGORIES_ID:
             	getProjDetail(info.id,CATEGORIES_URL,CATEGORIES,CategoriesActivity.class);
@@ -331,7 +332,7 @@ public class SifterReader extends ListActivity {
 				startActivity(intent);
 				return;
 			}
-			JSONArray projDetail = new JSONArray();
+			JSONArray projDetail;
 			try {
 				projDetail = sifterJSONObject.getJSONArray(PROJ_DETAIL);
 			} catch (JSONException e) {
@@ -347,10 +348,10 @@ public class SifterReader extends ListActivity {
 	
     
     private String getFilterSlug() {
-    	String projDetailURL = new String();
-		int issuesPerPage = IssuesActivity.MAX_PER_PAGE;
-		JSONArray status = new JSONArray();
-		JSONArray priority = new JSONArray();
+    	String projDetailURL;
+		int issuesPerPage;
+		JSONArray status;
+		JSONArray priority;
 		int numStatuses;
 		int numPriorities;
 		boolean[] filterStatus;
@@ -358,7 +359,7 @@ public class SifterReader extends ListActivity {
 		try {
 			JSONObject filters = mSifterHelper.getFiltersFile();
 			if (filters.length() == 0)
-				return new String();
+				return "";
 			issuesPerPage = filters.getInt(IssuesActivity.PER_PAGE);
 			status = filters.getJSONArray(IssuesActivity.STATUS);
 			priority = filters.getJSONArray(IssuesActivity.PRIORITY);
@@ -373,14 +374,14 @@ public class SifterReader extends ListActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 			mSifterHelper.onException(e.toString());
-			return new String();
+			return "";
 		}
 		projDetailURL = "?" + IssuesActivity.PER_PAGE + "=" + issuesPerPage;
 		projDetailURL += "&" + IssuesActivity.GOTO_PAGE + "=1";
-		JSONObject statuses = new JSONObject();
-		JSONObject priorities = new JSONObject();
-		JSONArray statusNames = new JSONArray();
-		JSONArray priorityNames = new JSONArray();
+		JSONObject statuses;
+		JSONObject priorities;
+		JSONArray statusNames;
+		JSONArray priorityNames;
 		try {
 			JSONObject sifterJSONObject = mSifterHelper.getSifterFilters();
 			statuses = sifterJSONObject.getJSONObject(IssuesActivity.STATUSES);
@@ -390,7 +391,7 @@ public class SifterReader extends ListActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 			mSifterHelper.onException(e.toString());
-			return new String();
+			return "";
 		}
 		try {
 			String filterSlug = "&s=";
@@ -414,7 +415,7 @@ public class SifterReader extends ListActivity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 			mSifterHelper.onException(e.toString());
-			return new String();
+			return "";
 		}
 		return projDetailURL;
 	}
@@ -501,15 +502,13 @@ public class SifterReader extends ListActivity {
 		URLConnection sifterConnection = mSifterHelper.getSifterConnection(filterURL);
 		if (sifterConnection == null)
 			return new JSONObject();
-		JSONObject filterJSONObject = new JSONObject();
 		try {
 			JSONObject sifterJSONObject = mSifterHelper.getSifterJSONObject(sifterConnection);
-			filterJSONObject = sifterJSONObject.getJSONObject(filter);
+			return sifterJSONObject.getJSONObject(filter);
 		} catch (Exception e) {
 			e.printStackTrace();
 			mSifterHelper.onException(e.toString());
 			return new JSONObject();
 		}
-		return filterJSONObject;
 	}
 }
